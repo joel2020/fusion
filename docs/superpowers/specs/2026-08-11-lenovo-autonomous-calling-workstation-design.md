@@ -50,6 +50,8 @@ John opens Zoho CRM `Leads` and selects the qualified cold-calling view that cor
 
 Within a selected view, John applies `Notes` -> `Without` -> `30 days`.
 
+Before dialing, John verifies that the lead owner is exactly `Fusion House Account`. Leads owned by anyone else are skipped without modification. An unanswered call or a connected call without a callback or EOI remains owned by `Fusion House Account`. Ownership changes to `Joel Carias` only when the prospect requests a callback or books an EOI.
+
 Cold calls are placed only during these windows in the lead's local time:
 
 - 9:00-11:00 a.m.
@@ -67,10 +69,12 @@ The natural daily sequence is Eastern, Central, Mountain, then Pacific as their 
 4. Add exactly one short note, normally `ddvm` or the matching established Zoho note style.
 
 No third attempt is placed in the same sequence.
+The lead owner remains `Fusion House Account`.
 
 ### Connected but No Meeting
 
 John follows the approved script and objection handling. After the call, he adds exactly one short, natural note consistent with recent account notes.
+The lead owner remains `Fusion House Account` unless the prospect requests a callback or books an EOI.
 
 ### Callback Requested
 
@@ -159,12 +163,13 @@ The workstation is ready for a supervised pilot only when all of the following p
 2. John states the approved identity and does not claim to be Joel.
 3. Interruption handling and script branching work on an internal test call.
 4. Lead selection respects the time-zone view, 30-day note filter, and local calling windows.
-5. An unanswered internal test performs exactly two calls, leaves voicemail only on the second, and creates one note.
-6. A callback test changes status and owner, creates the task, adds one note, and executes at the requested time.
-7. An EOI test checks Outlook during the call and completes Bookings and CRM after hang-up using the required values.
-8. Outlook, Bookings, and CRM verification detects a deliberately introduced mismatch.
-9. A do-not-call test halts solicitation and prevents redial.
-10. An unexpected page, missing field, audio failure, or authentication prompt pauses the workflow safely.
+5. The pre-dial gate skips every lead not owned by `Fusion House Account`.
+6. An unanswered internal test performs exactly two calls, leaves voicemail only on the second, creates one note, and retains owner `Fusion House Account`.
+7. A callback test changes status and owner to `Joel Carias`, creates the task, adds one note, and executes at the requested time.
+8. An EOI test checks Outlook during the call and completes Bookings and CRM after hang-up using the required values and owner `Joel Carias`.
+9. Outlook, Bookings, and CRM verification detects a deliberately introduced mismatch.
+10. A do-not-call test halts solicitation and prevents redial.
+11. An unexpected page, missing field, audio failure, or authentication prompt pauses the workflow safely.
 
 ## Deployment Stages
 

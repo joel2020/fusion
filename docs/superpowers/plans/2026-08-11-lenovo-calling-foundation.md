@@ -13,6 +13,8 @@
 - Run on Lenovo Yoga 7 model 83JT with Windows 11 Home build 26200.
 - Spoke Phone 10.18.0 remains the only telephone dialer.
 - No prospect calls or Zoho writes are allowed in this phase.
+- Later dialing phases must reject any cold-call lead whose owner is not exactly `Fusion House Account`.
+- Unanswered and no-meeting outcomes retain owner `Fusion House Account`; callback and EOI outcomes change owner to `Joel Carias`.
 - Only explicitly configured internal test numbers may pass the dialing safety gate.
 - Keep one-call-at-a-time state and fail closed on missing configuration, unexpected UI, or audio errors.
 - Never read or export browser cookies, passwords, OAuth tokens, or ElevenLabs secrets.
@@ -27,6 +29,8 @@ This plan implements Phase 1 only. Separate plans are required for:
 2. Zoho lead selection, double dialing, voicemail, and notes.
 3. Outlook availability, Zoho Bookings, and CRM Blueprint transitions.
 4. Callback tasks, reminder texts, supervised pilot, and unattended operations.
+
+The owner-transition behavior belongs to the later Zoho lead-handling plan. Phase 1 preserves the exact owner names as global constraints but performs no Zoho reads or writes.
 
 ## File Map
 
