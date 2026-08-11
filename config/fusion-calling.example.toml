@@ -1,0 +1,4 @@
+[workstation]
+dialing_enabled = false
+allowed_test_numbers = []
+spoke_window_pattern = "Spoke Phone"
