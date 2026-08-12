@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from threading import Lock
 
 from fusion_calling.config import CallingConfig
 
@@ -28,13 +29,16 @@ class DialSafetyGate:
 @dataclass
 class CallInterlock:
     active_call_id: str | None = None
+    _lock: Lock = field(default_factory=Lock, init=False, repr=False)
 
     def acquire(self, call_id: str) -> None:
-        if self.active_call_id is not None:
-            raise RuntimeError("a call is already active")
-        self.active_call_id = call_id
+        with self._lock:
+            if self.active_call_id is not None:
+                raise RuntimeError("a call is already active")
+            self.active_call_id = call_id
 
     def release(self, call_id: str) -> None:
-        if self.active_call_id != call_id:
-            raise RuntimeError("call id does not own the interlock")
-        self.active_call_id = None
+        with self._lock:
+            if self.active_call_id != call_id:
+                raise RuntimeError("call id does not own the interlock")
+            self.active_call_id = None
