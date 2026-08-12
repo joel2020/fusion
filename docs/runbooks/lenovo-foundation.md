@@ -17,6 +17,11 @@ powercfg /query SCHEME_CURRENT SUB_SLEEP HIBERNATEIDLE
 These settings apply only to AC power; do not alter the corresponding DC
 settings.
 
+The 64-bit Windows installation also needs the Microsoft Visual C++ v14
+Redistributable for `pywin32` UI inspection. On a machine where `import
+win32ui` reports a missing DLL, obtain separate approval before installing the
+official `Microsoft.VCRedist.2015+.x64` package; it supplies `mfc140u.dll`.
+
 From the dedicated repository folder on the Lenovo, run:
 
 ```powershell
