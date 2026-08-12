@@ -15,6 +15,7 @@
 - No prospect calls or Zoho writes are allowed in this phase.
 - Later dialing phases must reject any cold-call lead whose owner is not exactly `Fusion House Account`.
 - Unanswered and no-meeting outcomes retain owner `Fusion House Account`; callback and EOI outcomes change owner to `Joel Carias`.
+- Eastern, Central, Mountain, and Pacific lead lists use the 30-day notes rule; Alaska and Hawaii use state filters, owner `Fusion House Account`, notes older than 15 days, and the same 9:00-11:00 a.m. and 3:00-7:00 p.m. windows in local time.
 - Only explicitly configured internal test numbers may pass the dialing safety gate.
 - Keep one-call-at-a-time state and fail closed on missing configuration, unexpected UI, or audio errors.
 - Never read or export browser cookies, passwords, OAuth tokens, or ElevenLabs secrets.

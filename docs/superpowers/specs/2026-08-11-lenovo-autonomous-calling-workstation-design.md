@@ -50,6 +50,15 @@ John opens Zoho CRM `Leads` and selects the qualified cold-calling view that cor
 
 Within a selected view, John applies `Notes` -> `Without` -> `30 days`.
 
+Alaska and Hawaii use a separate state-based selection rule rather than the four mainland time-zone views:
+
+- Filter `State` to `AK` or `HI`.
+- Filter lead owner to exactly `Fusion House Account`.
+- Select leads whose latest note is more than 15 days old.
+- Call only during 9:00-11:00 a.m. or 3:00-7:00 p.m. in the lead's local Alaska or Hawaii time.
+
+The 15-day note-age exception applies only to Alaska and Hawaii. Eastern, Central, Mountain, and Pacific leads retain the 30-day rule.
+
 Before dialing, John verifies that the lead owner is exactly `Fusion House Account`. Leads owned by anyone else are skipped without modification. An unanswered call or a connected call without a callback or EOI remains owned by `Fusion House Account`. Ownership changes to `Joel Carias` only when the prospect requests a callback or books an EOI.
 
 Cold calls are placed only during these windows in the lead's local time:
@@ -162,7 +171,7 @@ The workstation is ready for a supervised pilot only when all of the following p
 1. Two-way SpokePhone and ElevenLabs audio works without echo or feedback.
 2. John states the approved identity and does not claim to be Joel.
 3. Interruption handling and script branching work on an internal test call.
-4. Lead selection respects the time-zone view, 30-day note filter, and local calling windows.
+4. Mainland lead selection respects the time-zone view, 30-day note filter, and local calling windows; Alaska and Hawaii selection respects the state filter, `Fusion House Account` owner, 15-day note-age rule, and local calling windows.
 5. The pre-dial gate skips every lead not owned by `Fusion House Account`.
 6. An unanswered internal test performs exactly two calls, leaves voicemail only on the second, creates one note, and retains owner `Fusion House Account`.
 7. A callback test changes status and owner to `Joel Carias`, creates the task, adds one note, and executes at the requested time.
