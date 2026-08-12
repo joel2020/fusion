@@ -7,9 +7,16 @@ import pytest
 from fusion_calling.windows import powershell
 
 
-def test_rejects_unsupported_powershell_request() -> None:
+def test_rejects_unsupported_powershell_request_before_process_execution(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    run = Mock()
+    monkeypatch.setattr(powershell.subprocess, "run", run)
+
     with pytest.raises(ValueError, match="unsupported PowerShell request"):
         powershell.PowerShellRunner().powershell_json("Get arbitrary script")
+
+    run.assert_not_called()
 
 
 def test_runs_only_the_fixed_inventory_script(monkeypatch: pytest.MonkeyPatch) -> None:
