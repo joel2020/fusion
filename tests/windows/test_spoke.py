@@ -38,3 +38,12 @@ def test_inspect_spoke_fails_on_multiple_windows() -> None:
 
     with pytest.raises(RuntimeError, match="exactly one"):
         inspect_spoke(DuplicateDesktop(), "Spoke Phone")
+
+
+def test_inspect_spoke_fails_when_no_windows_match() -> None:
+    class NoWindowDesktop(FakeDesktop):
+        def windows(self, title_re: str) -> list[FakeWindow]:
+            return []
+
+    with pytest.raises(RuntimeError, match="exactly one"):
+        inspect_spoke(NoWindowDesktop(), "Spoke Phone")
